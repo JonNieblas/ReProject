@@ -6,23 +6,13 @@
 </p>
 
 <p>
-  <strong>Course name:</strong>
-  <%= @section.course_name %>
-</p>
-
-<p>
-  <strong>Professor name:</strong>
-  <%= @section.professor_name %>
-</p>
-
-<p>
   <strong>Course:</strong>
-  <%= @section.course %>
+  <%= @section.course.try :name %>
 </p>
 
 <p>
   <strong>Professor:</strong>
-  <%= @section.professor %>
+  <%= @section.professor.try :name %>
 </p>
 
 <%= link_to 'Edit', edit_section_path(@section) %> |
