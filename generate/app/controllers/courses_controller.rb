@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_login
   # GET /courses
   # GET /courses.json
   def index
@@ -71,4 +71,12 @@ class CoursesController < ApplicationController
     def course_params
       params.require(:course).permit(:name, :section)
     end
+
+  #prevents access to info without login
+  def require_login
+    unless logged_in?
+      flash[:error] = "You must be logged in to access this information"
+      redirect_to login_path # halts request cycle
+    end
+  end
 end

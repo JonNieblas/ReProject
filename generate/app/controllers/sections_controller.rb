@@ -1,5 +1,6 @@
 class SectionsController < ApplicationController
   before_action :set_section, only: [:show, :edit, :update, :destroy]
+  before_action :require_login
 
   # GET /sections
   # GET /sections.json
@@ -71,4 +72,12 @@ class SectionsController < ApplicationController
     def section_params
       params.require(:section).permit(:section_name, :course_name, :professor_name, :course_id, :professor_id)
     end
+
+  #prevents access to info without login
+  def require_login
+    unless logged_in?
+      flash[:error] = "You must be logged in to access this information"
+      redirect_to login_path # halts request cycle
+    end
+  end
 end
