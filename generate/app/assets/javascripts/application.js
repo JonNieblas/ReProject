@@ -14,7 +14,6 @@
 //= require bootstrap
 //= require rails-ujs
 //= require turbolinks
-//= require_tree .
 
 $(function() {
     $("#courses th a, #courses .pagination a").live("click", function() {
