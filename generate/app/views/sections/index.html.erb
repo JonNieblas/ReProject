@@ -2,6 +2,14 @@
 
 <h1>Sections</h1>
 
+<%= form_tag sections_path, :method => 'get', :id => "sections_search" do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+    </p>
+    <div id="sections"><%= render 'sections' %></div>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -15,7 +23,7 @@
   <tbody>
     <% @sections.each do |section| %>
       <tr>
-        <td><%= section.section_name %></td>
+        <td><%= section.name %></td>
         <td><%= section.course.try :name %></td>
         <td><%= section.professor.try :name %></td>
         <td><%= link_to 'Show', section %></td>

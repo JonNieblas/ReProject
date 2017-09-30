@@ -5,7 +5,7 @@ class SectionsController < ApplicationController
   # GET /sections
   # GET /sections.json
   def index
-    @sections = Section.all
+    @sections = Section.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
   end
 
   # GET /sections/1
@@ -70,7 +70,7 @@ class SectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def section_params
-      params.require(:section).permit(:section_name, :course_name, :professor_name, :course_id, :professor_id)
+      params.require(:section).permit(:name, :course_id, :professor_id)
     end
 
   #prevents access to info without login
@@ -79,5 +79,13 @@ class SectionsController < ApplicationController
       flash[:error] = "You must be logged in to access this information"
       redirect_to login_path # halts request cycle
     end
+  end
+
+  def sort_column
+    Section.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

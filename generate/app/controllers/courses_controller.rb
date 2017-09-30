@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @courses = Course.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
   end
 
   # GET /courses/1
@@ -78,5 +78,13 @@ class CoursesController < ApplicationController
       flash[:error] = "You must be logged in to access this information"
       redirect_to login_path # halts request cycle
     end
+  end
+
+  def sort_column
+    Course.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end
