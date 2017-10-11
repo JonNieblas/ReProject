@@ -1,5 +1,6 @@
 class Professor < ApplicationRecord
   has_many :sections
+  has_many :students
 
   validates :name, length: { in: 7..20}
   validates :name, uniqueness: true
