@@ -1,6 +1,6 @@
 class Professor < ApplicationRecord
   has_many :sections
-  has_many :students
+  has_many :students, through: :sections
 
   validates :name, length: { in: 7..20}
   validates :name, uniqueness: true

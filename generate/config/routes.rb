@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :enrollments
+  resources :students
   get 'sessions/new'
 
   get 'static_pages/home'

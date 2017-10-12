@@ -2,6 +2,7 @@ class Section < ApplicationRecord
   belongs_to :course
   belongs_to :professor
   has_many   :enrollments
+  has_many   :students, through: :enrollments
 
   validates :name, numericality: true
   validates :name, length: { is: 4 }
