@@ -5,6 +5,25 @@
   <%= @professor.name %>
 </p>
 
+<p>
+  <strong>Sections & Students:</strong>
+
+    <ol>
+      <% @professor.sections.each do |section| %>
+          <b><%= section.name %></b>
+          <br />
+
+
+           <% section.students.each do |student| %>
+              <%= student.name %>
+              <br />
+           <% end %>
+
+          <br />
+      <% end %>
+    </ol>
+
+</p>
 
 <%= link_to 'Edit', edit_professor_path(@professor) %> |
 <%= link_to 'Back', professors_path %>

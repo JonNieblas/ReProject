@@ -11,10 +11,11 @@
                 Menu <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "Courses", 'courses' %></li>
-                <li><%= link_to "Professors", 'professors' %></li>
-                <li><%= link_to "Sections", 'sections' %></li>
-                <li><%= link_to "Students", 'students' %></li>
+                <li><%= link_to "Courses", courses_path %></li>
+                <li><%= link_to "Professors", professors_path %></li>
+                <li><%= link_to "Sections", sections_path %></li>
+                <li><%= link_to "Students", students_path %></li>
+                <li><%= link_to "Enrollment", enrollments_path %></li>
                 <li class="divider"></li>
                 <li>
                   <%= link_to "Log out", logout_path, method: :delete %>
