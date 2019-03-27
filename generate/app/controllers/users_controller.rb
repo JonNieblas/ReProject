@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "Welcome to the Registration App!"
-      redirect_to @course
+      redirect_to @user
     else
       render 'new'
     end
